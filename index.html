@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Fiscalización</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="encabezado">
+    <h1>Sistema de Fiscalización</h1>
+    <p>Registro de intervenciones y anexo fotográfico</p>
+  </header>
+
+  <main class="contenedor">
+
+    <section class="panel">
+      <h2>1. Proyectos de fiscalización</h2>
+
+      <label for="selectorProyecto">Abrir proyecto guardado</label>
+      <select id="selectorProyecto">
+        <option value="">Selecciona un proyecto</option>
+      </select>
+
+      <div class="acciones">
+        <button type="button" id="btnNuevo">Nuevo proyecto</button>
+        <button type="button" id="btnEditar" class="btn-secundario">
+          Editar proyecto
+        </button>
+        <button type="button" id="btnGuardarProyecto" class="btn-verde">
+          Guardar proyecto
+        </button>
+      </div>
+
+      <p id="estadoProyecto" role="status" aria-live="polite"></p>
+
+      <form id="formProyecto">
+        <label for="codigo">Código de práctica</label>
+        <input id="codigo" type="text" required
+               placeholder="Ej. FIS-001">
+
+        <label for="fecha">Fecha de fiscalización</label>
+        <input id="fecha" type="date" required>
+
+        <label for="lugar">Lugar de fiscalización</label>
+        <input id="lugar" type="text" required
+               placeholder="Ej. Jr. Principal 123">
+
+        <label for="responsable">Nombre del fiscalizador</label>
+        <input id="responsable" type="text" required
+               placeholder="Nombre ficticio o de práctica">
+
+        <label for="establecimiento">Denominación ficticia del establecimiento o unidad</label>
+        <input id="establecimiento" type="text" required
+               placeholder="Ej. Comercial Los Andes S.A.C.">
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>2. Captura e incorporación de fotografías</h2>
+
+      <p class="ayuda">
+        Primero selecciona una imagen o toma una fotografía. Revisa la vista
+        previa antes de confirmar su incorporación al proyecto activo.
+      </p>
+
+      <label for="fotografia">Tomar o seleccionar fotografía</label>
+      <input id="fotografia" type="file" accept="image/*" capture="environment">
+
+      <div id="zonaPrevia" hidden>
+        <h3>Vista previa</h3>
+        <img id="imagenPrevia" class="imagen-previa" alt="Vista previa">
+        <label for="descripcion">Descripción de la fotografía</label>
+        <textarea id="descripcion" rows="3"
+          placeholder="Describe lo observado"></textarea>
+
+        <div class="acciones">
+          <button type="button" id="btnConfirmar" class="btn-verde">
+            Confirmar fotografía
+          </button>
+          <button type="button" id="btnCancelar" class="btn-secundario">
+            Cancelar captura
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="titulo-lista">
+        <h2>3. Anexo fotográfico</h2>
+        <span id="contador">0 fotografías</span>
+      </div>
+
+      <p id="proyectoActual" class="ayuda">
+        Selecciona o guarda un proyecto para ver sus fotografías.
+      </p>
+
+      <div id="listaFotos" class="lista-fotos">
+        <p class="vacio">No hay fotografías registradas.</p>
+      </div>
+
+      <div class="acciones">
+        <button type="button" id="btnWord" class="btn-verde">
+          Descargar anexo Word (.docx)
+        </button>
+      </div>
+      <p id="mensaje" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer>Aplicación educativa de práctica con datos ficticios</footer>
+
+  <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
